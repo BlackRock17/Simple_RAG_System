@@ -1,10 +1,9 @@
-# AI Interview Demo - Simple RAG System
-# Created for Metasim Junior AI Engineer Interview
+# AI Demo - Simple RAG System
 
 import os
 from typing import List, Dict
-from langchain.vectorstores import Chroma
-from langchain.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import Chroma
+from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.docstore.document import Document
 from langchain.schema import BaseRetriever
@@ -166,12 +165,12 @@ and can provide a more accurate and informed response than using only my pre-tra
 
 def demo_ai_knowledge_base():
     """
-    Demo function - shows RAG system with AI
+    Демо функция за интервюто - показва RAG система с AI знания
     """
-    print("🎯 AI INTERVIEW DEMO - RAG СИСТЕМА")
+    print("🎯 AI INTERVIEW DEMO - RAG SYSTEM")
     print("=" * 50)
 
-    # Creating the RAG system
+    # Създаваме RAG системата
     rag = SimpleRAGSystem()
 
     # Sample AI knowledge base documents (relevant for the interview)
@@ -212,7 +211,7 @@ def demo_ai_knowledge_base():
         """
     ]
 
-    # Loading the documents
+    # Зареждаме документите
     rag.load_documents(ai_documents)
 
     # Demo questions for the interview
@@ -284,7 +283,7 @@ if __name__ == "__main__":
     print("✅ Similarity Search")
     print("\n" + "=" * 30)
 
-    # Mode selection
+    # Избор на режим
     print("\nChoose mode:")
     print("1. Automatic demo (for interview)")
     print("2. Interactive mode")
