@@ -1,4 +1,5 @@
-# AI Demo - Simple RAG System
+# AI Interview Demo - Simple RAG System
+# Created for Metasim Junior AI Engineer Interview
 
 import os
 from typing import List, Dict
@@ -34,8 +35,9 @@ class SimpleRAGSystem:
 
         # Text splitter divides large documents into smaller chunks
         self.text_splitter = CharacterTextSplitter(
-            chunk_size=500,  # Size of each chunk
-            chunk_overlap=50  # Overlap between chunks for context
+            chunk_size=200,  # Smaller chunks for better precision
+            chunk_overlap=20,  # Smaller overlap
+            separator=". "  # Split on sentences
         )
 
         print("✅ RAG system ready!")
@@ -51,23 +53,27 @@ class SimpleRAGSystem:
         """
         print(f"📚 Loading {len(texts)} documents...")
 
-        # Create Document objects
+        # Create Document objects with unique IDs
         documents = []
         for i, text in enumerate(texts):
             # Split text into chunks
             chunks = self.text_splitter.split_text(text)
 
-            for chunk in chunks:
+            for j, chunk in enumerate(chunks):
                 documents.append(Document(
                     page_content=chunk,
-                    metadata={"doc_id": i, "source": f"document_{i}"}
+                    metadata={
+                        "doc_id": i,
+                        "chunk_id": j,
+                        "source": f"document_{i}_chunk_{j}"
+                    }
                 ))
 
         # Create vector store with embeddings
         self.vectorstore = Chroma.from_documents(
             documents=documents,
             embedding=self.embeddings,
-            persist_directory="./chroma_db"  # Save locally
+            persist_directory=None  # Don't persist to avoid cache issues
         )
 
         print(f"✅ Loaded {len(documents)} chunks into vector database")
@@ -227,14 +233,16 @@ def demo_ai_knowledge_base():
 
     for question in demo_questions:
         print(f"\n❓ Question: {question}")
-        print("-" * 30)
+        print("-" * 50)
 
         # Show only the retrieve step for brevity
-        relevant_docs = rag.similarity_search(question, k=2)
+        relevant_docs = rag.similarity_search(question, k=3)
 
         print("📄 Found relevant documents:")
         for i, doc in enumerate(relevant_docs, 1):
-            print(f"{i}. {doc.page_content[:100]}...")
+            source = doc.metadata.get('source', f'doc_{i}')
+            preview = doc.page_content[:80].replace('\n', ' ')
+            print(f"{i}. [{source}] {preview}...")
 
         print("\n" + "=" * 60)
 
