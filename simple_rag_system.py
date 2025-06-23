@@ -1,5 +1,4 @@
-# AI Interview Demo - Simple RAG System
-# Created for Metasim Junior AI Engineer Interview
+# AI Demo - Simple RAG System
 
 import os
 from typing import List, Dict
@@ -171,12 +170,12 @@ and can provide a more accurate and informed response than using only my pre-tra
 
 def demo_ai_knowledge_base():
     """
-    Демо функция за интервюто - показва RAG система с AI знания
+    Demo function - shows RAG system with AI knowledge
     """
     print("🎯 AI INTERVIEW DEMO - RAG SYSTEM")
     print("=" * 50)
 
-    # Създаваме RAG системата
+    # Creates the RAG system
     rag = SimpleRAGSystem()
 
     # Sample AI knowledge base documents (relevant for the interview)
@@ -217,7 +216,7 @@ def demo_ai_knowledge_base():
         """
     ]
 
-    # Зареждаме документите
+    # Loading documents
     rag.load_documents(ai_documents)
 
     # Demo questions for the interview
@@ -228,7 +227,7 @@ def demo_ai_knowledge_base():
         "What is prompt engineering?"
     ]
 
-    print("\n🎤 INTERVIEW DEMONSTRATION:")
+    print("\n🎤 DEMONSTRATION:")
     print("=" * 40)
 
     for question in demo_questions:
@@ -281,7 +280,7 @@ def interactive_demo():
 
 
 if __name__ == "__main__":
-    print("🎯 METASIM AI INTERVIEW DEMO")
+    print("🎯 AI DEMO")
     print("=" * 30)
     print("This code demonstrates:")
     print("✅ RAG (Retrieval-Augmented Generation)")
@@ -291,9 +290,9 @@ if __name__ == "__main__":
     print("✅ Similarity Search")
     print("\n" + "=" * 30)
 
-    # Избор на режим
+    # Mode selection
     print("\nChoose mode:")
-    print("1. Automatic demo (for interview)")
+    print("1. Automatic demo")
     print("2. Interactive mode")
 
     choice = input("\nYour choice (1 or 2): ").strip()
